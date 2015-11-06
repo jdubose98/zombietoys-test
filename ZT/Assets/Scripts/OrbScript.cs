@@ -40,7 +40,7 @@ public class OrbScript : MonoBehaviour {
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         gameObject.GetComponentInChildren<ParticleSystem>().Stop();
         gameObject.GetComponentInChildren<Canvas>().enabled = false;
-        Destroy(gameObject, 6f);
+        Destroy(gameObject, Duration + 1);
     }
 
     enum BoostTypes
@@ -76,9 +76,9 @@ public class OrbScript : MonoBehaviour {
         { // fire rate
             Debug.Log("Player got shotgun!");
             ShootScript.Shotgun = true;
-            FirerateText.color = new Color(255, 255, 255, 255);
+            ShotgunText.color = new Color(255, 255, 255, 255);
             yield return new WaitForSeconds(waitTime);
-            FirerateText.color = new Color(255, 255, 255, .1f);
+            ShotgunText.color = new Color(255, 255, 255, .1f);
             ShootScript.Shotgun = false;
             Debug.Log("Player lost shotgun!");
         }
