@@ -24,6 +24,6 @@ using System.Collections;
         void Update ()
         {
             // Set the displayed text to be the word "Score" followed by the score value.
-            text.text = "Score: " + score;
+            text.text = "" + score;
         }
     }
