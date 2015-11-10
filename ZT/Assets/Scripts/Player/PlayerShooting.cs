@@ -133,98 +133,46 @@ public class PlayerShooting : MonoBehaviour
         }
 
         // Perform the raycast against gameobjects on the shootable layer and if it hits something...
-        if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
+        RayShoot(shootRay, shootHit, range, shootableMask, gunLine);
+
+        if (Shotgun == true)
+        {
+            //Ray 1
+            RayShoot(shootRay2, shootHit2, range, shootableMask, gunLine1);
+
+            //Ray 2
+            RayShoot(shootRay3, shootHit3, range, shootableMask, gunLine2);
+
+
+            //Ray 3
+            RayShoot(shootRay4, shootHit4, range, shootableMask, gunLine3);
+
+            
+        }
+    }
+
+    void RayShoot(Ray shotRay, RaycastHit rayHitPoint, float range, int shootMask, LineRenderer line )
+    {
+        if (Physics.Raycast(shotRay, out rayHitPoint, range, shootMask))
         {
             // Try and find an EnemyHealth script on the gameobject hit.
-            EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
+            EnemyHealth enemyHealth = rayHitPoint.collider.GetComponent<EnemyHealth>();
 
             // If the EnemyHealth component exist...
             if (enemyHealth != null)
             {
                 // ... the enemy should take damage.
-                enemyHealth.TakeDamage(damagePerShot, shootHit.point);
+                enemyHealth.TakeDamage(damagePerShot, rayHitPoint.point);
             }
 
             // Set the second position of the line renderer to the point the raycast hit.
-            gunLine.SetPosition(1, shootHit.point);
+            line.SetPosition(1, rayHitPoint.point);
         }
         // If the raycast didn't hit anything on the shootable layer...
         else
         {
             // ... set the second position of the line renderer to the fullest extent of the gun's range.
-            gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
-        }
-
-        if (Shotgun == true)
-        {
-            //Ray 1
-            if (Physics.Raycast(shootRay2, out shootHit2, range, shootableMask))
-            {
-                // Try and find an EnemyHealth script on the gameobject hit.
-                EnemyHealth enemyHealth = shootHit2.collider.GetComponent<EnemyHealth>();
-
-                // If the EnemyHealth component exist...
-                if (enemyHealth != null)
-                {
-                    // ... the enemy should take damage.
-                    enemyHealth.TakeDamage(damagePerShot, shootHit2.point);
-                }
-
-                // Set the second position of the line renderer to the point the raycast hit.
-                gunLine1.SetPosition(1, shootHit2.point);
-            }
-            // If the raycast didn't hit anything on the shootable layer...
-            else
-            {
-                // ... set the second position of the line renderer to the fullest extent of the gun's range.
-                gunLine1.SetPosition(1, shootRay2.origin + shootRay2.direction * range);
-            }
-            
-            //Ray 2
-            if (Physics.Raycast(shootRay3, out shootHit3, range, shootableMask))
-            {
-                // Try and find an EnemyHealth script on the gameobject hit.
-                EnemyHealth enemyHealth = shootHit3.collider.GetComponent<EnemyHealth>();
-
-                // If the EnemyHealth component exist...
-                if (enemyHealth != null)
-                {
-                    // ... the enemy should take damage.
-                    enemyHealth.TakeDamage(damagePerShot, shootHit3.point);
-                }
-
-                // Set the second position of the line renderer to the point the raycast hit.
-                gunLine2.SetPosition(1, shootHit3.point);
-            }
-            // If the raycast didn't hit anything on the shootable layer...
-            else
-            {
-                // ... set the second position of the line renderer to the fullest extent of the gun's range.
-                gunLine2.SetPosition(1, shootRay3.origin + shootRay3.direction * range);
-            }
-
-            //Ray 3
-            if (Physics.Raycast(shootRay4, out shootHit4, range, shootableMask))
-            {
-                // Try and find an EnemyHealth script on the gameobject hit.
-                EnemyHealth enemyHealth = shootHit4.collider.GetComponent<EnemyHealth>();
-
-                // If the EnemyHealth component exist...
-                if (enemyHealth != null)
-                {
-                    // ... the enemy should take damage.
-                    enemyHealth.TakeDamage(damagePerShot, shootHit4.point);
-                }
-
-                // Set the second position of the line renderer to the point the raycast hit.
-                gunLine3.SetPosition(1, shootHit4.point);
-            }
-            // If the raycast didn't hit anything on the shootable layer...
-            else
-            {
-                // ... set the second position of the line renderer to the fullest extent of the gun's range.
-                gunLine3.SetPosition(1, shootRay4.origin + shootRay4.direction * range);
-            }
+            line.SetPosition(1, shotRay.origin + shotRay.direction * range);
         }
     }
 }
