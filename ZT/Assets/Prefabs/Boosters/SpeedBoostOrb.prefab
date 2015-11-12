@@ -31,7 +31,7 @@ GameObject:
   - 136: {fileID: 13679966}
   - 114: {fileID: 11469318}
   m_Layer: 12
-  m_Name: SpeedBoost
+  m_Name: SpeedBoostOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
