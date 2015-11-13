@@ -89,25 +89,25 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot()
     {
-        // Reset the timer.
+        //Reset timer
         timer = 0f;
 
-        // Play the gun shot audioclip.
+        //pew!
         gunAudio.Play();
 
-        // Enable the lights.
+        //Lights
         gunLight.enabled = true;
         faceLight.enabled = true;
 
-        // Stop the particles from playing if they were, then start the particles.
+        // Reset the muzzle flash particles
         gunParticles.Stop();
         gunParticles.Play();
 
-        // Enable the line renderer and set it's first position to be the end of the gun.
+        // Turn on the renderer and set its first position to the muzzle
         gunLine.enabled = true;
         gunLine.SetPosition(0, transform.position);
 
-        // more shotgun spam.
+        // Copypaste of the earlier for the shotgun mode
         if (Shotgun == true) {
         gunLine1.enabled = true;
         gunLine1.SetPosition(0, transform.position);
@@ -116,63 +116,57 @@ public class PlayerShooting : MonoBehaviour
         gunLine3.enabled = true;
         gunLine3.SetPosition(0, transform.position); }
 
-        // Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
+        // Sets the ray to aim forwards from the barrel
         shootRay.origin = transform.position;
         shootRay.direction = transform.forward;
 
         if (Shotgun == true)
         {
             shootRay2.origin = transform.position;
-            shootRay2.direction = transform.forward + new Vector3(0, 0, Random.Range(-.6f, .6f));
+            shootRay2.direction = transform.forward + new Vector3(Random.Range(-.2f, .2f), 0, Random.Range(-.6f, .6f)); // Randomness is cool
 
             shootRay3.origin = transform.position;
-            shootRay3.direction = transform.forward + new Vector3(0, 0, Random.Range(-.6f, .6f));
+            shootRay3.direction = transform.forward + new Vector3(Random.Range(-.2f, .2f), 0, Random.Range(-.6f, .6f));
 
             shootRay4.origin = transform.position;
-            shootRay4.direction = transform.forward + new Vector3(0, 0, Random.Range(-.6f, .6f));
+            shootRay4.direction = transform.forward + new Vector3(Random.Range(-.2f, .2f), 0, Random.Range(-.6f, .6f));
         }
 
-        // Perform the raycast against gameobjects on the shootable layer and if it hits something...
-        RayShoot(shootRay, shootHit, range, shootableMask, gunLine);
+        
+        RayShoot(shootRay, shootHit, range, shootableMask, gunLine); // Raycasts to see if we hit something
 
         if (Shotgun == true)
         {
-            //Ray 1
+            //SG Ray 1
             RayShoot(shootRay2, shootHit2, range, shootableMask, gunLine1);
 
-            //Ray 2
+            //SG Ray 2
             RayShoot(shootRay3, shootHit3, range, shootableMask, gunLine2);
 
-
-            //Ray 3
+            //SG Ray 3
             RayShoot(shootRay4, shootHit4, range, shootableMask, gunLine3);
 
             
         }
     }
 
-    void RayShoot(Ray shotRay, RaycastHit rayHitPoint, float range, int shootMask, LineRenderer line )
-    {
-        if (Physics.Raycast(shotRay, out rayHitPoint, range, shootMask))
+    void RayShoot(Ray shotRay, RaycastHit rayHitPoint, float range, int shootMask, LineRenderer line ) // Greatly reduced copypasta. Takes the ray that's being shot out,
+    {                                                                                                  // where it hits, its range, what it can hit, and the renderer itself.
+        if (Physics.Raycast(shotRay, out rayHitPoint, range, shootMask)) // Looks to see if we shot something that is on the layer (enemies)
         {
-            // Try and find an EnemyHealth script on the gameobject hit.
-            EnemyHealth enemyHealth = rayHitPoint.collider.GetComponent<EnemyHealth>();
+            EnemyHealth enemyHealth = rayHitPoint.collider.GetComponent<EnemyHealth>(); // Finds enemy health component
 
-            // If the EnemyHealth component exist...
-            if (enemyHealth != null)
+            if (enemyHealth != null) // Does it exist?
             {
-                // ... the enemy should take damage.
-                enemyHealth.TakeDamage(damagePerShot, rayHitPoint.point);
+                enemyHealth.TakeDamage(damagePerShot, rayHitPoint.point); // Murdertime.
             }
 
-            // Set the second position of the line renderer to the point the raycast hit.
-            line.SetPosition(1, rayHitPoint.point);
+            line.SetPosition(1, rayHitPoint.point); // Set line render position 2 to where we hit
         }
-        // If the raycast didn't hit anything on the shootable layer...
-        else
+
+        else // If we hit nothing
         {
-            // ... set the second position of the line renderer to the fullest extent of the gun's range.
-            line.SetPosition(1, shotRay.origin + shotRay.direction * range);
+            line.SetPosition(1, shotRay.origin + shotRay.direction * range); // Set second position to the maximum range
         }
     }
 }

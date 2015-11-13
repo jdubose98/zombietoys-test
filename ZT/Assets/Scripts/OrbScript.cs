@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.Audio;
 
 public class OrbScript : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class OrbScript : MonoBehaviour {
     [SerializeField] float Duration;
     [SerializeField] PlayerMovement MoveScript;
     [SerializeField] Text SpeedText;
+    [SerializeField] AudioMixer Mixer;
 
     // Max spawn pos Z is 22.7
     // Min pos Z is -22.7
@@ -65,8 +67,10 @@ public class OrbScript : MonoBehaviour {
         if (boostType == "DD") { // double damage
             ShootScript.damagePerShot = (int)startValue; 
             DoubleDamageText.color = new Color(1, 1, 1, 1);
+            Mixer.SetFloat("Gunshots", .875f);
             yield return new WaitForSeconds(waitTime);
             ShootScript.damagePerShot = (int)endValue;
+            Mixer.SetFloat("Gunshots", 1.16f);
             DoubleDamageText.color = new Color(1, 1, 1, .1f);
         }
 
