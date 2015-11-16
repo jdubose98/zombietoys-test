@@ -67,10 +67,10 @@ public class OrbScript : MonoBehaviour {
         if (boostType == "DD") { // double damage
             ShootScript.damagePerShot = (int)startValue; 
             DoubleDamageText.color = new Color(1, 1, 1, 1);
-            Mixer.SetFloat("Gunshots", .875f);
+            Mixer.SetFloat("GunPitch", .875f);
             yield return new WaitForSeconds(waitTime);
             ShootScript.damagePerShot = (int)endValue;
-            Mixer.SetFloat("Gunshots", 1.16f);
+            Mixer.SetFloat("GunPitch", 1.16f);
             DoubleDamageText.color = new Color(1, 1, 1, .1f);
         }
 

@@ -13,7 +13,9 @@ AudioMixerController:
   m_StartSnapshot: {fileID: 24500003}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 849a9af2605074216ada5141c340cee3
+    name: GunPitch
   m_AudioMixerGroupViews:
   - guids:
     - 8a1ad67b18fb24d16bfca1085c10b8b1
@@ -22,6 +24,7 @@ AudioMixerController:
     - 5f15538cd3fbd4b83bb0b692c83671b6
     name: View
   m_CurrentViewIndex: 0
+  m_TargetSnapshot: {fileID: 24500003}
 --- !u!243 &24300000
 AudioMixerGroupController:
   m_ObjectHideFlags: 0

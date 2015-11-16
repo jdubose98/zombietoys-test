@@ -41,7 +41,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -508,6 +508,11 @@ Prefab:
       propertyPath: CollisionModule.plane0
       value: 
       objectReference: {fileID: 1821043814}
+    - target: {fileID: 11483394, guid: 93324d2fd9863ed45b85f2a554a14b6c, type: 2}
+      propertyPath: Mixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 8434b04884c414ac6b468e10945685e6,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93324d2fd9863ed45b85f2a554a14b6c, type: 2}
   m_IsPrefabParent: 0
@@ -1800,6 +1805,11 @@ Prefab:
       propertyPath: SpeedText
       value: 
       objectReference: {fileID: 1471578995}
+    - target: {fileID: 11469318, guid: 320a698fdc8629545b959bf8b893a33f, type: 2}
+      propertyPath: Mixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 8434b04884c414ac6b468e10945685e6,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 320a698fdc8629545b959bf8b893a33f, type: 2}
   m_IsPrefabParent: 0
@@ -1913,6 +1923,50 @@ Prefab:
     - target: {fileID: 400002, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
       propertyPath: m_LocalRotation.y
       value: .302444339
+      objectReference: {fileID: 0}
+    - target: {fileID: 400042, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -20.6399994
+      objectReference: {fileID: 0}
+    - target: {fileID: 400042, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -4.36999989
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 6.40999985
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -17.0599995
+      objectReference: {fileID: 0}
+    - target: {fileID: 400100, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 5.0427154e-08
+      objectReference: {fileID: 0}
+    - target: {fileID: 400100, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: .785359979
+      objectReference: {fileID: 0}
+    - target: {fileID: 400100, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 6.39757047e-08
+      objectReference: {fileID: 0}
+    - target: {fileID: 400100, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: .619039357
+      objectReference: {fileID: 0}
+    - target: {fileID: 400100, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -4.8499999
+      objectReference: {fileID: 0}
+    - target: {fileID: 400100, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400100, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -21.3700008
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
@@ -3669,6 +3723,11 @@ Prefab:
       propertyPath: CollisionModule.plane0
       value: 
       objectReference: {fileID: 1821043814}
+    - target: {fileID: 11470704, guid: 78ad83b4a699b6e49928a9fa20ce04a5, type: 2}
+      propertyPath: Mixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 8434b04884c414ac6b468e10945685e6,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78ad83b4a699b6e49928a9fa20ce04a5, type: 2}
   m_IsPrefabParent: 0
@@ -4950,6 +5009,11 @@ Prefab:
       propertyPath: CollisionModule.plane0
       value: 
       objectReference: {fileID: 1821043814}
+    - target: {fileID: 11485278, guid: 39476f3d5e6387043b5f71cde5fa0d56, type: 2}
+      propertyPath: Mixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 8434b04884c414ac6b468e10945685e6,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 39476f3d5e6387043b5f71cde5fa0d56, type: 2}
   m_IsPrefabParent: 0
