@@ -48,7 +48,7 @@ GameObject:
   - 114: {fileID: 11485278}
   m_Layer: 12
   m_Name: DamageBoosterOrb
-  m_TagString: Untagged
+  m_TagString: Boosters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,6 +217,7 @@ MonoBehaviour:
   Duration: 10
   MoveScript: {fileID: 0}
   SpeedText: {fileID: 0}
+  Mixer: {fileID: 24100000, guid: 8434b04884c414ac6b468e10945685e6, type: 2}
 --- !u!136 &13664426
 CapsuleCollider:
   m_ObjectHideFlags: 1

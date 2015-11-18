@@ -434,7 +434,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: .119999997
-    width: .129999995
+    width: .119999997
     height: .200000003
   near clip plane: .300000012
   far clip plane: 1000
@@ -538,6 +538,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 19869234, guid: 93324d2fd9863ed45b85f2a554a14b6c, type: 2}
+      propertyPath: CollisionModule.plane0
+      value: 
+      objectReference: {fileID: 1821043814}
     - target: {fileID: 11483394, guid: 93324d2fd9863ed45b85f2a554a14b6c, type: 2}
       propertyPath: PowerupSound
       value: 
@@ -566,19 +570,6 @@ Prefab:
       propertyPath: SpeedText
       value: 
       objectReference: {fileID: 1471578995}
-    - target: {fileID: 19869234, guid: 93324d2fd9863ed45b85f2a554a14b6c, type: 2}
-      propertyPath: CollisionModule.plane0
-      value: 
-      objectReference: {fileID: 1821043814}
-    - target: {fileID: 11483394, guid: 93324d2fd9863ed45b85f2a554a14b6c, type: 2}
-      propertyPath: Mixer
-      value: 
-      objectReference: {fileID: 24100000, guid: 8434b04884c414ac6b468e10945685e6,
-        type: 2}
-    - target: {fileID: 128048, guid: 93324d2fd9863ed45b85f2a554a14b6c, type: 2}
-      propertyPath: m_TagString
-      value: Boosters
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93324d2fd9863ed45b85f2a554a14b6c, type: 2}
   m_IsPrefabParent: 0
@@ -1012,6 +1003,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02bb86f2ee5f48e499c1cc13099c234d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpeedBoosterPrefab: {fileID: 165752, guid: 320a698fdc8629545b959bf8b893a33f, type: 2}
+  ShotgunPrefab: {fileID: 125390, guid: 78ad83b4a699b6e49928a9fa20ce04a5, type: 2}
+  DoubleDamagePrefab: {fileID: 162478, guid: 39476f3d5e6387043b5f71cde5fa0d56, type: 2}
+  FireBoosterPrefab: {fileID: 128048, guid: 93324d2fd9863ed45b85f2a554a14b6c, type: 2}
 --- !u!4 &304717682
 Transform:
   m_ObjectHideFlags: 0
@@ -1910,15 +1905,6 @@ Prefab:
       propertyPath: SpeedText
       value: 
       objectReference: {fileID: 1471578995}
-    - target: {fileID: 11469318, guid: 320a698fdc8629545b959bf8b893a33f, type: 2}
-      propertyPath: Mixer
-      value: 
-      objectReference: {fileID: 24100000, guid: 8434b04884c414ac6b468e10945685e6,
-        type: 2}
-    - target: {fileID: 165752, guid: 320a698fdc8629545b959bf8b893a33f, type: 2}
-      propertyPath: m_TagString
-      value: Boosters
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 320a698fdc8629545b959bf8b893a33f, type: 2}
   m_IsPrefabParent: 0
@@ -2076,6 +2062,10 @@ Prefab:
     - target: {fileID: 400100, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
       propertyPath: m_LocalPosition.z
       value: -21.3700008
+      objectReference: {fileID: 0}
+    - target: {fileID: 100044, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
+      propertyPath: m_TagString
+      value: Walls
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
@@ -2314,7 +2304,7 @@ RectTransform:
   m_RootOrder: 7
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -144, y: 25}
+  m_AnchoredPosition: {x: -42, y: 18}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &899922594
@@ -2343,7 +2333,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 8
+    m_Alignment: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
@@ -3548,7 +3538,7 @@ GameObject:
   - 222: {fileID: 1471578996}
   - 114: {fileID: 1471578995}
   m_Layer: 5
-  m_Name: Speed
+  m_Name: WSBoost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3568,7 +3558,7 @@ RectTransform:
   m_RootOrder: 8
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -179, y: 20}
+  m_AnchoredPosition: {x: 43, y: 28}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1471578995
@@ -3597,7 +3587,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 8
+    m_Alignment: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
@@ -3640,7 +3630,7 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -90, y: 25}
+  m_AnchoredPosition: {x: 13, y: 18}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1528195145
@@ -3669,7 +3659,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 8
+    m_Alignment: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
@@ -3712,7 +3702,7 @@ RectTransform:
   m_RootOrder: 6
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -120, y: 25}
+  m_AnchoredPosition: {x: -9, y: 18}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1530800143
@@ -3741,7 +3731,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 8
+    m_Alignment: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
@@ -3822,6 +3812,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 19857552, guid: 78ad83b4a699b6e49928a9fa20ce04a5, type: 2}
+      propertyPath: CollisionModule.plane0
+      value: 
+      objectReference: {fileID: 1821043814}
     - target: {fileID: 11470704, guid: 78ad83b4a699b6e49928a9fa20ce04a5, type: 2}
       propertyPath: PowerupSound
       value: 
@@ -3850,19 +3844,6 @@ Prefab:
       propertyPath: SpeedText
       value: 
       objectReference: {fileID: 1471578995}
-    - target: {fileID: 19857552, guid: 78ad83b4a699b6e49928a9fa20ce04a5, type: 2}
-      propertyPath: CollisionModule.plane0
-      value: 
-      objectReference: {fileID: 1821043814}
-    - target: {fileID: 11470704, guid: 78ad83b4a699b6e49928a9fa20ce04a5, type: 2}
-      propertyPath: Mixer
-      value: 
-      objectReference: {fileID: 24100000, guid: 8434b04884c414ac6b468e10945685e6,
-        type: 2}
-    - target: {fileID: 125390, guid: 78ad83b4a699b6e49928a9fa20ce04a5, type: 2}
-      propertyPath: m_TagString
-      value: Boosters
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78ad83b4a699b6e49928a9fa20ce04a5, type: 2}
   m_IsPrefabParent: 0
@@ -5112,6 +5093,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 19801604, guid: 39476f3d5e6387043b5f71cde5fa0d56, type: 2}
+      propertyPath: CollisionModule.plane0
+      value: 
+      objectReference: {fileID: 1821043814}
     - target: {fileID: 11485278, guid: 39476f3d5e6387043b5f71cde5fa0d56, type: 2}
       propertyPath: PowerupSound
       value: 
@@ -5140,19 +5125,6 @@ Prefab:
       propertyPath: SpeedText
       value: 
       objectReference: {fileID: 1471578995}
-    - target: {fileID: 19801604, guid: 39476f3d5e6387043b5f71cde5fa0d56, type: 2}
-      propertyPath: CollisionModule.plane0
-      value: 
-      objectReference: {fileID: 1821043814}
-    - target: {fileID: 11485278, guid: 39476f3d5e6387043b5f71cde5fa0d56, type: 2}
-      propertyPath: Mixer
-      value: 
-      objectReference: {fileID: 24100000, guid: 8434b04884c414ac6b468e10945685e6,
-        type: 2}
-    - target: {fileID: 162478, guid: 39476f3d5e6387043b5f71cde5fa0d56, type: 2}
-      propertyPath: m_TagString
-      value: Boosters
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 39476f3d5e6387043b5f71cde5fa0d56, type: 2}
   m_IsPrefabParent: 0
