@@ -12,7 +12,7 @@ public class OrbRandomizer : MonoBehaviour {
     // Use this for initialization
     void Start () {
         RandomizePositions();
-
+        StartCoroutine(UpdateOrbs());
 	}
 	
 	// Update is called once per frame
@@ -51,5 +51,6 @@ GameObject[] orbs = GameObject.FindGameObjectsWithTag("Boosters");
     {
         yield return new WaitForSeconds(60);
         RandomizePositions();
+        StartCoroutine(UpdateOrbs());
     }
 }

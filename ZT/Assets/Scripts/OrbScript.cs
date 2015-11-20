@@ -4,17 +4,21 @@ using System.Collections;
 using UnityEngine.Audio;
 
 public class OrbScript : MonoBehaviour {
-
+    // Unity accepts these as being able to set in the prefab...
     [SerializeField] BoostTypes Type = BoostTypes.FireRate;
-    [SerializeField] AudioSource PowerupSound;
-    [SerializeField] PlayerShooting ShootScript;
-    [SerializeField] Text DoubleDamageText;
-    [SerializeField] Text FirerateText;
-    [SerializeField] Text ShotgunText;
-    [SerializeField] float Duration;
-    [SerializeField] PlayerMovement MoveScript;
-    [SerializeField] Text SpeedText;
     [SerializeField] AudioMixer Mixer;
+    [SerializeField] float Duration;
+    // but the rest of these friggin things can't be set! Why!?
+    AudioSource PowerupSound;
+
+    PlayerShooting ShootScript;
+    Text DoubleDamageText;
+    Text FirerateText;
+    Text ShotgunText;
+    Text SpeedText;
+
+    PlayerMovement MoveScript;
+    
 
     // Max spawn pos Z is 22.7
     // Min pos Z is -22.7
@@ -22,8 +26,16 @@ public class OrbScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Time.timeScale = 1;
-	}
+        PowerupSound = GameObject.FindWithTag("Gun Tip").GetComponent<AudioSource>();
+
+        MoveScript = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+        ShootScript = GameObject.FindWithTag("Player").GetComponentInChildren<PlayerShooting>();
+
+        DoubleDamageText = GameObject.FindWithTag("Damage").GetComponent<Text>();
+        FirerateText = GameObject.FindWithTag("Firerate").GetComponent<Text>();
+        ShotgunText = GameObject.FindWithTag("Shotgun").GetComponent<Text>();
+        SpeedText = GameObject.FindWithTag("Speed").GetComponent<Text>();
+    }
 	
     void OnTriggerEnter(Collider otherObject)
     {

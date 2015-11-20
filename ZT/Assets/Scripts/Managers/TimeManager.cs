@@ -12,7 +12,7 @@ public class TimeManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (playerHP.currentHealth >= 0)
+        if (playerHP.currentHealth > 0)
         timerText.text = Time.timeSinceLevelLoad.ToString("F1");
 	}
 }

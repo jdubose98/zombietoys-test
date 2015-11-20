@@ -193,15 +193,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
-  PowerupSound: {fileID: 0}
-  ShootScript: {fileID: 0}
-  DoubleDamageText: {fileID: 0}
-  FirerateText: {fileID: 0}
-  ShotgunText: {fileID: 0}
-  Duration: 10
-  MoveScript: {fileID: 0}
-  SpeedText: {fileID: 0}
   Mixer: {fileID: 24100000, guid: 8434b04884c414ac6b468e10945685e6, type: 2}
+  Duration: 15
 --- !u!114 &11489744
 MonoBehaviour:
   m_ObjectHideFlags: 1

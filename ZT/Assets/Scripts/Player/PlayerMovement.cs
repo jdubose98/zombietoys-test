@@ -4,25 +4,20 @@ using UnitySampleAssets.CrossPlatformInput;
 
     public class PlayerMovement : MonoBehaviour
     {
-        public float speed = 6f;            // The speed that the player will move at.
+        public float speed = 6f;            // controls the player's speed (public due to orbscript)
 
+        Vector3 movement;                   // stores player's movement
+        Animator anim;                      // to the animator...
+        Rigidbody playerRigidbody;          // to the rigidbody! (to the rigidbody)
 
-        Vector3 movement;                   // The vector to store the direction of the player's movement.
-        Animator anim;                      // Reference to the animator component.
-        Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
-#if !MOBILE_INPUT
-        int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
-        float camRayLength = 100f;          // The length of the ray from the camera into the scene.
-#endif
+        int floorMask;                      // so rays only hit the floor layer
+        float camRayLength = 100f;          // kind of arbitrary, but needed for the raycast
 
         void Awake ()
         {
-#if !MOBILE_INPUT
-            // Create a layer mask for the floor layer.
-            floorMask = LayerMask.GetMask ("Floor");
-#endif
+            floorMask = LayerMask.GetMask ("Floor"); // make a mask for our raycasts...
 
-            // Set up references.
+            // make references, maybe one day they will get jobs and support themselves. freeloaders.
             anim = GetComponent <Animator> ();
             playerRigidbody = GetComponent <Rigidbody> ();
         }
@@ -31,85 +26,62 @@ using UnitySampleAssets.CrossPlatformInput;
         void FixedUpdate ()
         {
             // Store the input axes.
-            float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
-            float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
+            float m_Horizontal = CrossPlatformInputManager.GetAxisRaw("Horizontal");
+            float m_Vertical = CrossPlatformInputManager.GetAxisRaw("Vertical");
 
             // Move the player around the scene.
-            Move (h, v);
+            Move (m_Horizontal, m_Vertical);
 
             // Turn the player to face the mouse cursor.
             Turning ();
 
             // Animate the player.
-            Animating (h, v);
+            Animating (m_Horizontal, m_Vertical);
         }
 
 
-        void Move (float h, float v)
+        void Move (float m_HorizontalMove, float m_VerticalMove)
         {
-            // Set the movement vector based on the axis input.
-            movement.Set (h, 0f, v);
-            
-            // Normalise the movement vector and make it proportional to the speed per second.
-            movement = movement.normalized * speed * Time.deltaTime;
-
-            // Move the player to it's current position plus the movement.
-            playerRigidbody.MovePosition (transform.position + movement);
+            movement.Set (m_HorizontalMove, 0f, m_VerticalMove); // get axes and set movement
+            movement = movement.normalized * speed * Time.deltaTime; // normalize vector over time so we can't cheat by strafing
+            playerRigidbody.MovePosition (transform.position + movement); // and then we move the player.
         }
 
 
         void Turning ()
         {
-#if !MOBILE_INPUT
-            // Create a ray from the mouse cursor on screen in the direction of the camera.
-            Ray camRay = Camera.main.ScreenPointToRay (Input.mousePosition);
+            Ray camRay = Camera.main.ScreenPointToRay (Input.mousePosition); // cast a ray from the cursor to the world
 
-            // Create a RaycastHit variable to store information about what was hit by the ray.
-            RaycastHit floorHit;
+            RaycastHit m_floorHit; // store what we found out here
 
             // Perform the raycast and if it hits something on the floor layer...
-            if(Physics.Raycast (camRay, out floorHit, camRayLength, floorMask))
+            if(Physics.Raycast (camRay, out m_floorHit, camRayLength, floorMask))
             {
-                // Create a vector from the player to the point on the floor the raycast from the mouse hit.
-                Vector3 playerToMouse = floorHit.point - transform.position;
-
-                // Ensure the vector is entirely along the floor plane.
-                playerToMouse.y = 0f;
-
-                // Create a quaternion (rotation) based on looking down the vector from the player to the mouse.
-                Quaternion newRotatation = Quaternion.LookRotation (playerToMouse);
-
-                // Set the player's rotation to this new rotation.
-                playerRigidbody.MoveRotation (newRotatation);
+                Vector3 m_playerToMouse = m_floorHit.point - transform.position; // makes a vector from the player to where we hit the floor
+                m_playerToMouse.y = 0f; // put it along the floor plane
+                Quaternion m_newRotatation = Quaternion.LookRotation (m_playerToMouse); // create the quaternion... ew, quaternions.
+                playerRigidbody.MoveRotation (m_newRotatation); // and then set the rotation
             }
-#else
 
-            Vector3 turnDir = new Vector3(CrossPlatformInputManager.GetAxisRaw("Mouse X") , 0f , CrossPlatformInputManager.GetAxisRaw("Mouse Y"));
 
-            if (turnDir != Vector3.zero)
+            Vector3 m_turnDir = new Vector3(CrossPlatformInputManager.GetAxisRaw("Mouse X") , 0f , CrossPlatformInputManager.GetAxisRaw("Mouse Y"));
+
+            if (m_turnDir != Vector3.zero)
             {
-                // Create a vector from the player to the point on the floor the raycast from the mouse hit.
-                Vector3 playerToMouse = (transform.position + turnDir) - transform.position;
-
-                // Ensure the vector is entirely along the floor plane.
-                playerToMouse.y = 0f;
-
-                // Create a quaternion (rotation) based on looking down the vector from the player to the mouse.
-                Quaternion newRotatation = Quaternion.LookRotation(playerToMouse);
-
-                // Set the player's rotation to this new rotation.
-                playerRigidbody.MoveRotation(newRotatation);
+                //create a vector from the player to the point where mouse hit
+                Vector3 m_playerToMouse = (transform.position + m_turnDir) - transform.position;
+                m_playerToMouse.y = 0f; // mouse on the foor
+                Quaternion newRotatation = Quaternion.LookRotation(m_playerToMouse); // make quaternion
+                playerRigidbody.MoveRotation(newRotatation); // set player rotation
             }
-#endif
+
         }
 
 
         void Animating (float h, float v)
         {
-            // Create a boolean that is true if either of the input axes is non-zero.
-            bool walking = h != 0f || v != 0f;
-
-            // Tell the animator whether or not the player is walking.
-            anim.SetBool ("IsWalking", walking);
+            // detects if the player's inputs are non-zero, then tells the animator to work
+            bool m_walking = h != 0f || v != 0f;
+            anim.SetBool ("IsWalking", m_walking);
         }
     }
